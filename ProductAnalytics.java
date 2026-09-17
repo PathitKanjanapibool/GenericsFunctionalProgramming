@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ProductAnalytics {
     private List<Product> productCatalog;
@@ -14,12 +15,15 @@ public class ProductAnalytics {
      * ค้นหาสินค้าทั้งหมดในหมวดหมู่ที่กำหนด
      */
     public List<Product> findProductsByCategory(String category) {
-        List<Product> results = new ArrayList<>();
-        for (Product p : productCatalog) {
-            if (p.category().equalsIgnoreCase(category)) {
-                results.add(p);
-            }
-        }
+        // List<Product> results = new ArrayList<>();
+        // for (Product p : productCatalog) {
+        //     if (p.category().equalsIgnoreCase(category)) {
+        //         results.add(p);
+        //     }
+        // }
+        // return results;
+
+        List<Product> results = productCatalog.stream().filter(p -> p.category().equalsIgnoreCase(category)).collect(Collectors.toList());
         return results;
     }
 
